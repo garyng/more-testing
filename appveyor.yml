@@ -23,7 +23,7 @@ install:
 assembly_info:
   patch: true
   file: AssemblyInfo.*
-  assembly_version: "2.2.{build}"
+  assembly_version: "{version}"
   assembly_file_version: "{version}"
   assembly_informational_version: "{version}"
 
@@ -59,6 +59,7 @@ artifacts:
   # pushing a single file with environment variable in path and "Deployment name" specified
   - path: src\MoreTesting.Wpf\bin\$(configuration) 
     name: MoreTesting.Wpf-$(configuration)
+    # $(configuration) works here
 
 
 
