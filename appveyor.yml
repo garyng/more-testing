@@ -46,6 +46,9 @@ for:
       - feature/.*
   configuration: Debug
 
+before_build: 
+  - nuget restore
+
 build:
   parallel: true                  # enable MSBuild parallel builds
   project: src\MoreTesting.sln      # path to Visual Studio solution or project
