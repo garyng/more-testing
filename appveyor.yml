@@ -1,0 +1,61 @@
+version: 1.0.{build}-{branch}-$(configuration)
+
+# https://www.appveyor.com/docs/branches/
+branches:
+  only:
+    - master
+    - develop
+    - feature/.*
+
+# skip_tags: true
+
+image: Visual Studio 2017
+clone_depth: 1
+cache:
+  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
+  - packages -> **\packages.config  
+  - '%LocalAppData%\NuGet\Cache'    # NuGet < v3
+  - '%LocalAppData%\NuGet\v3-cache' # NuGet v3
+
+install:
+  - ps: Write-Host "Hello from PowerShell"
+
+assembly_info:
+  patch: true
+  file: AssemblyInfo.*
+  assembly_version: "2.2.{build}"
+  assembly_file_version: "{version}"
+  assembly_informational_version: "{version}"
+
+configuration: Release
+
+for:
+-
+  branches:
+    only:
+      - master
+    configuration: Release
+- 
+  branches:
+    only:
+      - develop
+    configuration: Debug
+- 
+  branches:
+    only:
+      - feature/.*
+    configuration: Debug
+
+build:
+  parallel: true                  # enable MSBuild parallel builds
+  project: src\MoreTesting.sln      # path to Visual Studio solution or project
+
+test: off
+
+artifacts:
+  # pushing a single file with environment variable in path and "Deployment name" specified
+  - path: src\MoreTesting.Wpf\bin\$(configuration) 
+    name: MoreTesting.Wpf-$(configuration)
+
+
+
