@@ -1,4 +1,7 @@
-version: 1.0.{build}-{branch}-$(configuration)
+version: 1.0.{build}-{branch}
+
+environment:
+  project_path: src\MoreTesting.sln
 
 # https://www.appveyor.com/docs/branches/
 branches:
@@ -47,11 +50,11 @@ for:
   configuration: Debug
 
 before_build: 
-  - nuget restore
+  - nuget restore src\$(project_path)
 
 build:
   parallel: true                  # enable MSBuild parallel builds
-  project: src\MoreTesting.sln      # path to Visual Studio solution or project
+  project: $(project_path)      # path to Visual Studio solution or project
 
 test: off
 
