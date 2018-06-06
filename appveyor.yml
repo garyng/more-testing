@@ -34,17 +34,17 @@ for:
   branches:
     only:
       - master
-    configuration: Release
+  configuration: Release
 - 
   branches:
     only:
       - develop
-    configuration: Debug
+  configuration: Debug
 - 
   branches:
     only:
       - feature/.*
-    configuration: Debug
+  configuration: Debug
 
 build:
   parallel: true                  # enable MSBuild parallel builds
