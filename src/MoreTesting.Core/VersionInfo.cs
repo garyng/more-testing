@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace MoreTesting.Core
 {
-	public class Testing
+	public class VersionInfo
 	{
 		public string Title => "More Testing";
 
