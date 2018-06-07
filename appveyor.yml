@@ -5,7 +5,7 @@ branches:
   only:
     - master
     - develop
-    - feature/.*
+    - /features\/.+/ # Regular expressions should be surrounded by /, otherwise Appveyor will do simple case insensitive string comparison.
 
 # skip_tags: true
 
