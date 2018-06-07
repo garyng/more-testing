@@ -43,7 +43,7 @@ for:
 - 
   branches:
     only:
-      - /feature\/.*/ # Regular expressions should be surrounded by /, otherwise Appveyor will do simple case insensitive string comparison.
+      - /feature\/.+/ # Regular expressions should be surrounded by /, otherwise Appveyor will do simple case insensitive string comparison.
   configuration: Debug
 
 before_build: 
