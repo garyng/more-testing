@@ -9,9 +9,9 @@ using Newtonsoft.Json;
 
 namespace MoreTesting.Core
 {
-	public class Testing
+	public class VersionInfo
 	{
-		public string Title => "More Testing";
+		public string Title => "New fancy features!";
 
 		public string AssemblyVersion => Assembly.GetExecutingAssembly().GetName().Version.ToString();
 		public string FileVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;

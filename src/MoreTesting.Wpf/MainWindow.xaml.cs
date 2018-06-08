@@ -24,7 +24,7 @@ namespace MoreTesting.Wpf
 		public MainWindow()
 		{
 			InitializeComponent();
-			var testing = new Testing();
+			var testing = new VersionInfo();
 			this.Title = testing.Title;
 			txtJson.Text = testing.Json;
 		}
