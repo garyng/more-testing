@@ -1,6 +1,11 @@
 version: 1.0.{build}-{branch}
 
 # https://www.appveyor.com/docs/branches/
+
+skip_tags: true
+
+# !! probably doesn't need this?
+# because gitversion handles every branches' version
 branches:
   only:
     - master
