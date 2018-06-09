@@ -94,6 +94,7 @@ Task("Build")
 
 Task("Test")
     .IsDependentOn("Build")
+    .DeferOnError()
     .Does(() => 
     {
         if (!DirectoryExists(_testResultsOutDir))
