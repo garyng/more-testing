@@ -1,71 +1,25 @@
-version: 1.0.{build}-{branch}
+image: Visual Studio 2017
 
-# https://www.appveyor.com/docs/branches/
-
-skip_tags: true
-
-# !! probably doesn't need this?
-# because gitversion handles every branches' version
 branches:
   only:
     - master
     - develop
     - /features\/.+/ # Regular expressions should be surrounded by /, otherwise Appveyor will do simple case insensitive string comparison.
 
-# skip_tags: true
-
-image: Visual Studio 2017
-# GitVersion need a proper git repo
-# clone_depth: 1 
 cache:
   # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
   - src\packages -> **\packages.config  
   - '%LocalAppData%\NuGet\Cache'    # NuGet < v3
   - '%LocalAppData%\NuGet\v3-cache' # NuGet v3
 
-install:
-  - ps: Write-Host "Hello from PowerShell"
+skip_tags: true
 
 assembly_info:
-  patch: true
-  file: AssemblyInfo.*
-  assembly_version: "{version}"
-  assembly_file_version: "{version}"
-  assembly_informational_version: "{version}"
+  # handled by cake build script
+  patch: false
 
-configuration: Release
-
-for:
--
-  branches:
-    only:
-      - master
-  configuration: Release
-- 
-  branches:
-    only:
-      - develop
-  configuration: Debug
-- 
-  branches:
-    only:
-      - /feature\/.+/ # Regular expressions should be surrounded by /, otherwise Appveyor will do simple case insensitive string comparison.
-  configuration: Debug
-
-before_build: 
-  - nuget restore src\MoreTesting.sln
-
-build:
-  parallel: true                  # enable MSBuild parallel builds
-  project: src\MoreTesting.sln     # path to Visual Studio solution or project
-
+# handled by cake build script
 test: off
 
-artifacts:
-  # pushing a single file with environment variable in path and "Deployment name" specified
-  - path: src\MoreTesting.Wpf\bin\$(configuration) 
-    name: MoreTesting.Wpf-$(configuration)
-    # $(configuration) works here
-
-
-
+build_script:
+  - ps: .\build.ps1 -Verbosity Diagnostic
