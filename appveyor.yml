@@ -13,7 +13,6 @@ cache:
   - '%LocalAppData%\NuGet\v3-cache' # NuGet v3
   - tools -> build.cake, tools/packages.config # cache cakebuild tools directory, from https://www.gep13.co.uk/blog/how-to-use-appveyor-cache
 
-
 skip_tags: true
 
 assembly_info:

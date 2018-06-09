@@ -164,7 +164,7 @@ Task("Upload-Artifacts-To-AppVeyor")
     .WithCriteria(() => AppVeyor.IsRunningOnAppVeyor)
     .Does(() => 
     {
-        string[] artifacts = System.IO.Directory.GetFiles(_artifactsOutDir.FullPath);
+        string[] artifacts = GetAllFiles(_artifactsOutDir);
        
         foreach (var artifact in artifacts)
         {
@@ -206,6 +206,11 @@ string GetProjectObjPathPattern(DirectoryPath projectDirectory, string configura
 string GetTestsAssembliesPathPattern()
 {
     return $"{_testDir.Path}/**/bin/{_configuration}/*.Tests.dll";
+}
+
+string[] GetAllFiles(DirectoryPath directory)
+{
+    return System.IO.Directory.GetFiles(directory.FullPath);
 }
 
 RunTarget(_target);
