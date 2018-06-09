@@ -164,11 +164,11 @@ Task("Upload-Artifacts-To-AppVeyor")
     .WithCriteria(() => AppVeyor.IsRunningOnAppVeyor)
     .Does(() => 
     {
-        var artifacts = GetFiles(_artifactsOutDir.FullPath);
+        string[] artifacts = System.IO.Directory.GetFiles(_artifactsOutDir.FullPath);
+       
         foreach (var artifact in artifacts)
         {
-            Information(artifact.FullPath);
-            AppVeyor.UploadArtifact(artifact.FullPath);
+            AppVeyor.UploadArtifact(artifact);
         }
     });
 
