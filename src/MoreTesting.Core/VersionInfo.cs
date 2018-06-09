@@ -18,7 +18,5 @@ namespace MoreTesting.Core
 
 		[JsonIgnore]
 		public string Json => JsonConvert.SerializeObject(this, Formatting.Indented);
-
-
 	}
 }
