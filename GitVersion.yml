@@ -2,3 +2,7 @@ mode: ContinuousDeployment
 branches: {}
 ignore:
   sha: []
+
+assembly-informational-format: '{NuGetVersion}'
+# Can be retrived using 
+# FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion;
