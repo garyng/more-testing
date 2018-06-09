@@ -166,7 +166,7 @@ Task("Upload-Artifacts-To-AppVeyor")
         var artifacts = GetFiles(_artifactsOutDir.FullPath);
         foreach (var artifact in artifacts)
         {
-            AppVeyor.UploadArtifact(artifact);
+            AppVeyor.UploadArtifact(artifact.FullPath);
         }
     });
 
