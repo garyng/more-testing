@@ -8,9 +8,11 @@ branches:
 
 cache:
   # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
-  - src\packages -> **\packages.config  
+  - src\packages -> **\packages.config
   - '%LocalAppData%\NuGet\Cache'    # NuGet < v3
   - '%LocalAppData%\NuGet\v3-cache' # NuGet v3
+  - tools -> build.cake, tools/packages.config # cache cakebuild tools directory, from https://www.gep13.co.uk/blog/how-to-use-appveyor-cache
+
 
 skip_tags: true
 
