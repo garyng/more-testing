@@ -299,3 +299,15 @@ __pycache__/
 
 
 # End of https://www.gitignore.io/api/visualstudio
+
+# Created by https://www.gitignore.io/api/cake
+
+### Cake ###
+tools/*
+!tools/packages.config
+
+
+# End of https://www.gitignore.io/api/cake
+
+# Ignore the out folder at root (which is used by cake build script)
+/out
