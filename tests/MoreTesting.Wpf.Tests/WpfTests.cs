@@ -24,6 +24,7 @@ namespace MoreTesting.Wpf.Tests
 		}
 
 		[Test]
+		[Ignore("Randomly fail")]
 		public void Should_RandomlyFail()
 		{
 			// Arrange
