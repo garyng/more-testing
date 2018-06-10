@@ -17,7 +17,7 @@ var _outDir = Directory(Argument("OutDir", "./out/"));  // for storing tests res
 // TOOLS / ADDINS
 ///////////////////////////////////////////////////////////////////////////////
 
-#tool "nuget:?package=GitVersion.CommandLine"
+#tool "nuget:?package=GitVersion.CommandLine&prerelease"
 #tool "nuget:?package=NUnit.ConsoleRunner"
 
 #addin "nuget:?package=Cake.Incubator"
