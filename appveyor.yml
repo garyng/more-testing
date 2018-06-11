@@ -24,3 +24,7 @@ test: off
 
 build_script:
   - ps: .\build.ps1 -Verbosity Diagnostic
+
+environment:
+  SUPER_SECRET_VAR:
+    secure: 0Bc/rR4ulN4mEgMvxzdEcTR9eW6EE5wxAELVEON2ews=

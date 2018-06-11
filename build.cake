@@ -23,6 +23,12 @@ var _outDir = Directory(Argument("OutDir", "./out/"));  // for storing tests res
 #addin "nuget:?package=Cake.Incubator"
 
 ///////////////////////////////////////////////////////////////////////////////
+// ENVIRONMENT VARIABLES
+///////////////////////////////////////////////////////////////////////////////
+
+
+
+///////////////////////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -172,17 +178,31 @@ Task("Upload-Artifacts-To-AppVeyor")
         }
     });
 
+Task("Environment-Variables")
+    .Does(() => {
+        var super_secret_var = EnvironmentVariable("SUPER_SECRET_VAR");
+        if (super_secret_var == null)
+        {
+            Information("I can't see the secret variable...");
+        }
+        else
+        {
+            Information($"SUPER_SECRET_VAR: {super_secret_var}");
+        }
+    });
+
 Task("Default")
-    .IsDependentOn("Clean")
-    .IsDependentOn("Restore")
-    .IsDependentOn("Update-Version")
-    .IsDependentOn("Update-AppVeyor-Version")
-    .IsDependentOn("Build")
-    .IsDependentOn("Test")
-    .IsDependentOn("Upload-Test-Results-To-AppVeyor")
-    .IsDependentOn("Copy-Binaries")
-    .IsDependentOn("Zip-Binaries-Then-Copy")
-    .IsDependentOn("Upload-Artifacts-To-AppVeyor");
+    .IsDependentOn("Environment-Variables");
+    // .IsDependentOn("Clean")
+    // .IsDependentOn("Restore")
+    // .IsDependentOn("Update-Version")
+    // .IsDependentOn("Update-AppVeyor-Version")
+    // .IsDependentOn("Build")
+    // .IsDependentOn("Test")
+    // .IsDependentOn("Upload-Test-Results-To-AppVeyor")
+    // .IsDependentOn("Copy-Binaries")
+    // .IsDependentOn("Zip-Binaries-Then-Copy")
+    // .IsDependentOn("Upload-Artifacts-To-AppVeyor");
 
 ///////////////////////////////////////////////////////////////////////////////
 // HELPERS
