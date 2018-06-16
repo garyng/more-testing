@@ -21,6 +21,8 @@ var _outDir = Directory(Argument("OutDir", "./out/"));  // for storing tests res
 #tool "nuget:?package=NUnit.ConsoleRunner"
 
 #addin "nuget:?package=Cake.Incubator"
+#addin "nuget:?package=Cake.Json"
+#addin "nuget:?package=Newtonsoft.Json&version=9.0.1"
 
 ///////////////////////////////////////////////////////////////////////////////
 // ENVIRONMENT VARIABLES
@@ -178,21 +180,13 @@ Task("Upload-Artifacts-To-AppVeyor")
         }
     });
 
-Task("Environment-Variables")
+Task("Dump-Appveyor")
     .Does(() => {
-        var super_secret_var = EnvironmentVariable("SUPER_SECRET_VAR");
-        if (super_secret_var == null)
-        {
-            Information("I can't see the secret variable...");
-        }
-        else
-        {
-            Information($"SUPER_SECRET_VAR: {super_secret_var}");
-        }
+        Information(SerializeJsonPretty(AppVeyor));
     });
 
 Task("Default")
-    .IsDependentOn("Environment-Variables");
+    .IsDependentOn("Dump-Appveyor");
     // .IsDependentOn("Clean")
     // .IsDependentOn("Restore")
     // .IsDependentOn("Update-Version")
